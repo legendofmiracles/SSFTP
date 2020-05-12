@@ -1,7 +1,7 @@
 use std::path::Path;
 use ftp::ftpStream; // use the ftp crate
 use ftp::openssl::ssl::{ SslContext, SslMethod }; // also use SSL for FTP.
-mod parseFtp;
+use crate::parseFtp;
 
 pub fn checkIfFileExists(file: String) -> bool {
     let exists = Path::new(file).exists();
