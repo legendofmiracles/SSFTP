@@ -20,6 +20,9 @@ pub fn send(&file) {
     }
 }
 
+// pub fn get_user_input(){
+// }
+
 
 // start the ftp server
 pub fn startServer(){
@@ -27,7 +30,34 @@ pub fn startServer(){
     let ctx = SslContext::builder(SslMethod::tls()).unwrap().build();
     // Switch to the secure mode
     let mut ftp_stream = ftp_stream.into_secure(ctx).unwrap();
-    ftp_stream.login("anonymous", "anonymous").unwrap();
+    // get input so we can sign in
+    // get_user_input();
+    use std::io::{stdin,stdout,Write};
+    let mut s=String::new();
+    print!("Enter username ");
+    let _=stdout().flush();
+    stdin().read_line(&mut s).expect("Did not enter a correct user.");
+    if let Some('\n')=s.chars().next_back() {
+        s.pop();
+    }
+    if let Some('\r')=s.chars().next_back() {
+        s.pop();
+    }
+
+    // get password
+    let mut s2=String::new();
+    print!("Enter password: ");
+    let _=stdout().flush();
+    stdin().read_line(&mut s).expect("Did not enter a correct pass.");
+    if let Some('\n')=s.chars().next_back() {
+        s.pop();
+    }
+    if let Some('\r')=s.chars().next_back() {
+        s.pop();
+    }
+    
+
+    ftp_stream.login(s, s2).unwrap(); // log in with credentials.
     // Do other secret stuff
     // Switch back to the insecure mode (if required)
     let mut ftp_stream = ftp_stream.into_insecure().unwrap();
