@@ -1,3 +1,4 @@
-pub fn main(){
-    
+pub fn init(){
+    // initialize
+    println!("Beginning initiation of FTP client...")
 }

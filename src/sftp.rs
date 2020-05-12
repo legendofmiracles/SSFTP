@@ -1,3 +1,7 @@
-pub fn main(){
+pub fn checkIfFileExists() {
     
+}
+
+pub fn init(){
+
 }
