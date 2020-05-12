@@ -1,4 +1,5 @@
 use std::path::Path;
+mod parseSftp;
 
 pub fn checkIfFileExists(file: String) -> bool {
     Path::new(file).exists()
