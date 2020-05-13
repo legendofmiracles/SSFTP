@@ -17,3 +17,16 @@ but you don't have a USB? SSFTP saves the day.
 
 (it's basically OneDrive, CLI edition, not made by Microsoft,
 and open source!)
+
+
+## Technologies used:
+
+- Rust
+
+- Rust openssl crate
+
+- Rust ftp crate
+
+
+All credit goes to their authors.
+
