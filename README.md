@@ -30,3 +30,7 @@ and open source!)
 
 All credit goes to their authors.
 
+
+## Slack
+
+[Join the slack channel](https://join.slack.com/t/ssftpdevelopment/shared_invite/zt-ebx867f9-OJvLwaTESM28Abe5EJyzWA)
