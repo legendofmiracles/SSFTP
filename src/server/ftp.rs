@@ -66,7 +66,7 @@ pub fn startServer(){
     let _ = ftp_stream.quit();
 }
 
-// initialize the FTP client
+// initialize the FTP server
 pub fn init(){
     startServer();
 }
