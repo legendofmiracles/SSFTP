@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/AVCADO/SSFTP.svg?branch=master)](https://travis-ci.com/AVCADO/SSFTP)
 ## SSFTP
 A simple, lightweight, flexible FTP and SFTP client.
 
