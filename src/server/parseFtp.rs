@@ -2,7 +2,9 @@
 
 
 // imports
-crate ffmpeg;
+// crate ffmpeg;
+use std::fs;
+use std::io;
 
 // global scoped, immutable variables
 
@@ -55,10 +57,18 @@ pub fn textFile(file: std::string::String) {
 
     let contents = fs::read_to_string(file)
         .expect("Something went wrong reading the file");
+    
     // ask if want to download or keep on server:
     let mut choice = String::new();
-    print!("Keep {0} on server, or download? ", file.to_string());
-    let b1 = std::io::stdin().read_line(&mut line).unwrap();
-
-    
+    print!("Keep file on server or download it? ");
+    match io::stdin().read_line(&mut choice){
+        Ok(_) => {
+            if choice == "server" {
+                // ...
+            }
+        }
+        Err(e) => {
+            println!("err: {0}", e);
+        }
+    }
 }
