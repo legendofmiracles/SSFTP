@@ -2,6 +2,7 @@
 
 
 // imports
+crate ffmpeg;
 
 // global scoped, immutable variables
 
@@ -30,4 +31,14 @@ pub fn checkForMal(file: std::string::String) {
         println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[3]);
     }
     println!("File valid. Parsing");
+}
+
+
+pub fn read(file: std::string::String) {
+    if file.contains(".mp4"){
+        // use FFmpeg
+    }
+    if file.contains(".mp3"){
+        // also use FFmpeg
+    }
 }
