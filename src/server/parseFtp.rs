@@ -35,10 +35,30 @@ pub fn checkForMal(file: std::string::String) {
 
 
 pub fn read(file: std::string::String) {
+    // video files
     if file.contains(".mp4"){
         // use FFmpeg
     }
     if file.contains(".mp3"){
         // also use FFmpeg
     }
+    // text files (such as text files) 
+    if file.contains(".txt"){
+        textFile(file.to_string());
+    }
+}
+
+
+// functions for reading specific documents.
+pub fn textFile(file: std::string::String) { 
+    println!("In file {}", file);
+
+    let contents = fs::read_to_string(file)
+        .expect("Something went wrong reading the file");
+    // ask if want to download or keep on server:
+    let mut choice = String::new();
+    print!("Keep {0} on server, or download? ", file.to_string());
+    let b1 = std::io::stdin().read_line(&mut line).unwrap();
+
+    
 }
