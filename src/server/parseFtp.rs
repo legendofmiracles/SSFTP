@@ -32,7 +32,7 @@ pub fn checkForMal(file: std::string::String) {
     if file.contains(invalidExtensions[3]){
         println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[3]);
     }
-    println!("File valid. Parsing");
+    println!("{0} is valid. Parsing", file.to_string());
 }
 
 
@@ -46,13 +46,13 @@ pub fn read(file: std::string::String) {
     }
     // text files (such as text files) 
     if file.contains(".txt"){
-        textFile(file.to_string());
+        text_file(file.to_string());
     }
 }
 
 
 // functions for reading specific documents.
-pub fn textFile(file: std::string::String) { 
+pub fn text_file(file: std::string::String) { 
     println!("In file {}", file);
 
     let contents = fs::read_to_string(file)
