@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 openssl = "0.10.29"
 ftp = "3.0.1"
+ffmpeg = "0.1.1"
