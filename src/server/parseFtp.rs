@@ -5,6 +5,7 @@
 // crate ffmpeg;
 use std::fs;
 use std::io;
+use std::process::Command;
 
 // global scoped, immutable variables
 
@@ -51,11 +52,35 @@ pub fn read(file: std::string::String) {
 }
 
 
+// recursivelyDownloadFile, well, recursively downloads files.
+pub fn recursivelyDownloadFile(file: std::string::String) {
+    let CurrentOS = std::env::consts::OS;
+    let checkOS = CurrentOS.to_string();
+    if checkOS == "windows" { // checks for windows
+        Command::new("poweshell cat ".to_owned() + &file + " >> temp.txt")
+            .spawn()
+            .expect("WARNING: You may not have specific permissions");
+        // once this is done, we'll submit the data onto a database
+        // then we run that on the client side and something.
+    }
+    if checkOS == "mac" {
+        // we can run it natively.
+        // no needing to run it in a sub-subshell
+        Command::new("cat ".to_owned() + &file + " >> temp.txt")
+            .spawn()
+            .expect("WARNING. Please run with sudo if you have not.");
+        // now we add the raw data to a database,
+        // encrypt it with an algorithm
+        // and do other stuff.
+    }
+}
+
 // functions for reading specific documents.
 pub fn text_file(file: std::string::String) { 
+    let fileName: std::string::String = "".to_string();
     println!("In file {}", file);
 
-    let contents = fs::read_to_string(file)
+    let _contents = fs::read_to_string(fileName)
         .expect("Something went wrong reading the file");
     
     // ask if want to download or keep on server:
@@ -64,7 +89,12 @@ pub fn text_file(file: std::string::String) {
     match io::stdin().read_line(&mut choice){
         Ok(_) => {
             if choice == "server" {
-                // ...
+                println!("Keeping on server.");
+            }
+            // i really don't know else-if statments in rust so...
+            if choice == "download" {
+                println!("got here");
+                recursivelyDownloadFile(file);
             }
         }
         Err(e) => {
