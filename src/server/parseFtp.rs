@@ -117,7 +117,11 @@ pub fn text_file(file: std::string::String) {
                 let mut _choice2 = String::new();
                 match io::stdin().read_line(&mut _choice2){
                     Ok(_) => {
-                        if _choice2 == "cloud"
+                        if _choice2 == "cloud" {
+                            // ok i dont know what do do here lmao
+                        } else if _choice2 == "database"{
+                            // use diesel
+                        }
                     }
                     Err(e) => {
                         print!("Error occured! Details: {}", e);
