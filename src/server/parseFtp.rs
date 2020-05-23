@@ -19,31 +19,42 @@ use std::process::Command;
 // checkForMal(".exe"); true
 // checkForMal(".pdf"); false
 pub fn checkForMal(file: std::string::String) {
-    //let mut splitFile = file.split(".");
     let invalidExtensions = [".exe", ".bat", ".sh", ".ps1"];
-    if file.contains(invalidExtensions[0]) {
-        println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[0]);
+    let weirdExtensions = [".exe.mp4", ".exe.mp3", ".exe.txt", ".exe.docx", // im tired i dont want to write more extensions then this
+                           ".bat.mp4", ".bat.mp3", ".bat.txt", ".bat.docx",
+                           ".sh.mp4", ".sh.mp3", ".sh.txt", ".sh.docx",
+                           ".ps1.mp4", ".ps1.mp3", ".ps1.txt", ".ps1.docx"]; // they will come soon
+    for i in 0..weirdExtensions.len() {
+        if file.ends_with(weirdExtensions[i]) {
+            println!("File {0} is not allowed due to extension: {1}", file, weirdExtensions[i]);
+            break;
+        } else {
+            if file.contains(invalidExtensions[0]) {
+                println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[0]);
+            }
+            if file.contains(invalidExtensions[1]){
+                println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[1]);
+            }
+            if file.contains(invalidExtensions[2]){
+                println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[2]);
+            }
+            if file.contains(invalidExtensions[3]){
+                println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[3]);
+            }
+            break;
+        }
     }
-    if file.contains(invalidExtensions[1]){
-        println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[1]);
-    }
-    if file.contains(invalidExtensions[2]){
-        println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[2]);
-    }
-    if file.contains(invalidExtensions[3]){
-        println!("Because {0} has the extension {1}, we cannot allow this file through FTP", file, invalidExtensions[3]);
-    }
-    println!("{0} is valid. Parsing", file.to_string());
+    
+    // println!("{0} is valid. Parsing", file.to_string());
 }
-
 
 pub fn read(file: std::string::String) {
     // video files
     if file.contains(".mp4"){
-        // use FFmpeg
+        // process it.
     }
     if file.contains(".mp3"){
-        // also use FFmpeg
+       audioProcess(file.to_string());
     }
     // text files (such as text files) 
     if file.contains(".txt"){
@@ -51,8 +62,11 @@ pub fn read(file: std::string::String) {
     }
 }
 
+pub fn audioProcess(file: std::string::String){
+    // foo bar lol
+}
 
-// recursivelyDownloadFile, well, recursively downloads files.
+// recursivelyDownloadFile, well, recursively downloads text files.
 pub fn recursivelyDownloadFile(file: std::string::String) {
     let CurrentOS = std::env::consts::OS;
     let checkOS = CurrentOS.to_string();
@@ -73,6 +87,12 @@ pub fn recursivelyDownloadFile(file: std::string::String) {
         // encrypt it with an algorithm
         // and do other stuff.
     }
+    if checkOS == "linux" {
+        Command::new("cat ".to_owned() + &file + " >> temp.txt")
+            .spawn()
+            .expect("WARNING. Please run with sudo if you have not.");
+        // this is like mac
+    }
 }
 
 // functions for reading specific documents.
@@ -90,6 +110,19 @@ pub fn text_file(file: std::string::String) {
         Ok(_) => {
             if choice == "server" {
                 println!("Keeping on server.");
+                print!("Do you want to save Raw Data to cloud or into a database?");
+                let choice2: std::string::String = "".to_string();
+                let _contents2 = fs::read_to_string(choice2)
+                    .expect("Something went wrong.");
+                let mut _choice2 = String::new();
+                match io::stdin().read_line(&mut _choice2){
+                    Ok(_) => {
+                        if _choice2 == "cloud"
+                    }
+                    Err(e) => {
+                        print!("Error occured! Details: {}", e);
+                    }
+                }
             }
             // i really don't know else-if statments in rust so...
             if choice == "download" {
@@ -98,7 +131,7 @@ pub fn text_file(file: std::string::String) {
             }
         }
         Err(e) => {
-            println!("err: {0}", e);
+            println!("err: {}", e);
         }
     }
 }
