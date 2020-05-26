@@ -118,7 +118,20 @@ pub fn text_file(file: std::string::String) {
                 match io::stdin().read_line(&mut _choice2){
                     Ok(_) => {
                         if _choice2 == "cloud" {
-                            // ok i dont know what do do here lmao
+                            // run the gui application
+                            let CurrentOS = std::env::consts::OS;
+                            let checkOS = CurrentOS.to_string();
+                            if checkOS == "windows" {
+
+                            } else if checkOS == "mac" {
+
+                            } else if checkOS == "linux" {
+                                Command::new("python3 extScripts/server.py")
+                                    .spawn()
+                                    .expect("uh oh, issue occured");
+                            } else {
+                                print!("unknown os");
+                            }
                         } else if _choice2 == "database"{
                             // use diesel
                         }
