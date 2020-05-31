@@ -129,15 +129,27 @@ pub fn text_file(file: std::string::String) {
                                 // attempt 2?
                                 Command::new("python3 extScripts/server.py")
                                     .spawn() // make instance
-                                    .expect("Error occcured, make an issue on the github"); // shrug:
+                                    .expect("Error occcured, make an issue on the github"); // shrug :)
                             } else if checkOS == "mac" {
-
-                            } else if checkOS == "linux" {
+                                // usually it runs with py, so, let's try that
+                                Command::new("py extScripts/server.py")
+                                    .spawn() // create the instance
+                                    .expect("Error ocurred, re attempting");
+                                // attempt 2?
                                 Command::new("python3 extScripts/server.py")
-                                    .spawn()
-                                    .expect("uh oh, issue occured");
+                                    .spawn() // make instance
+                                    .expect("Error occcured, make an issue on the github"); // shrug :)
+                            } else if checkOS == "linux" {
+                                // usually it runs with py, so, let's try that
+                                Command::new("py extScripts/server.py")
+                                    .spawn() // create the instance
+                                    .expect("Error ocurred, re attempting");
+                                // attempt 2?
+                                Command::new("python3 extScripts/server.py")
+                                    .spawn() // make instance
+                                    .expect("Error occcured, make an issue on the github"); // shrug :)
                             } else {
-                                print!("unknown os");
+                                print!("unknown os lol!");
                             }
                         } else if _choice2 == "database"{
                             // use diesel
