@@ -122,7 +122,14 @@ pub fn text_file(file: std::string::String) {
                             let CurrentOS = std::env::consts::OS;
                             let checkOS = CurrentOS.to_string();
                             if checkOS == "windows" {
-
+                                // usually it runs with py, so, let's try that
+                                Command::new("py extScripts/server.py")
+                                    .spawn() // create the instance
+                                    .expect("Error ocurred, re attempting");
+                                // attempt 2?
+                                Command::new("python3 extScripts/server.py")
+                                    .spawn() // make instance
+                                    .expect("Error occcured, make an issue on the github"); // shrug:
                             } else if checkOS == "mac" {
 
                             } else if checkOS == "linux" {
