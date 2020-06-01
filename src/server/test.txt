@@ -1,0 +1,11 @@
+This is just a test
+of v0.1 of SSFTP
+
+
+
+
+INFO ABOUT TEXT FILE:
+
+Date created: 6-1-2020
+Time created: 11:26 AM UTC-5
+Version built for: v0.1, and others
