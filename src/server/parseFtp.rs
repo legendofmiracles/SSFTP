@@ -15,28 +15,29 @@ use std::process::Command;
 
 
 // init function
-pub fn init(){
-    println!("Enter command (h to help)> ");
-    let mut _choice2: std::string::String = "".to_owned();
-    match io::stdin().read_line(&mut _choice2){
-        Ok(_) => {
-            if _choice2 == "h" {
-                println!("SSFTP HELP V0.1 (SSFTP is in beta currently)");
-                println!("--c Enter Client");
-                println!("Variations: --c [username]@[password]");
-                println!("--s Enter Server");
-                println!("Variations: --s [ip, such as 127.0.0.1]@[password]");
-            } else if _choice2 == "--c" {
-                if _choice2.contains("admin") && _choice2.contains("admin") {
-                    print!("NO.");
-                }
-            }
-        }
-        Err(e) => {
-            println!("Error occured: {}", e);
-        }
-    }
-}
+// deprecated
+//pub fn init(){
+//    println!("Enter command (h to help)> ");
+//    let mut _choice2: std::string::String = "".to_owned();
+//    match io::stdin().read_line(&mut _choice2){
+//        Ok(_) => {
+//            if _choice2 == "h" {
+//                println!("SSFTP HELP V0.1 (SSFTP is in beta currently)");
+//                println!("--c Enter Client");
+//                println!("Variations: --c [username]@[password]");
+//                println!("--s Enter Server");
+//                println!("Variations: --s [ip, such as 127.0.0.1]@[password]");
+//            } else if _choice2 == "--c" {
+//                if _choice2.contains("admin") && _choice2.contains("admin") {
+//                    print!("NO.");
+//                }
+//            }
+//        }
+//        Err(e) => {
+//            println!("Error occured: {}", e);
+//        }
+//   }
+//}
 
 // public functions
 
